@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 const ejs = require("ejs");
 const path = require("path");
 const app = express();
-const Photo = require("./models/Photo");
+const Post = require("./models/Posts");
 
 app.set("view engine", "ejs");
 
@@ -15,9 +15,15 @@ app.use(express.json());
 mongoose.connect('mongodb://localhost/blog-test-db');
 
 app.get("/", async (req, res) => {
-  const photos = await Photo.find({});
+  const posts = await Post.find({});
   res.render("index", {
-    photos,
+    posts
+  });
+});
+app.get("/posts/:id", async (req, res) => {
+  const post = await Post.findById(req.params.id);
+  res.render("post",{
+    post
   });
 });
 app.get("/about", (req, res) => {
@@ -26,8 +32,8 @@ app.get("/about", (req, res) => {
 app.get("/add", (req, res) => {
   res.render("add");
 });
-app.post("/photos", async (req, res) => {
-  await Photo.create(req.body);
+app.post("/posts", async (req, res) => {
+  await Post.create(req.body);
   res.redirect("/");
 });
 

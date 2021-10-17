@@ -31,7 +31,7 @@ app.post("/posts", postController.createPost);
 app.put("/posts/:id", postController.updatePost);
 app.delete("/posts/:id", postController.deletePost);
 
-const port = 3000;
+const port = 5000;
 app.listen(port, () => {
   console.log(`Sunucu ${port} portunda başlatıldı..`);
 });

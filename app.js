@@ -19,7 +19,7 @@ app.use(
   })
 );
 
-mongoose.connect('mongodb://localhost/blog-test-db');
+mongoose.connect('mongodb+srv://gylph:7fa137EF@cluster0.y0fuc.mongodb.net/myFirstDatabase?retryWrites=true&w=majority');
 
 app.get("/posts/edit/:id", pageController.getEditPage);
 app.get("/about", pageController.getAboutPage);
